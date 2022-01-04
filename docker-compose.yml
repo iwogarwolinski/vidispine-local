@@ -1,0 +1,20 @@
+services:
+  vidispine:
+    image: vidispine
+    restart: on-failure
+    build:
+      context: ./
+      dockerfile: Dockerfile.vidispine
+    volumes:
+      - ./vidispine-config.yaml:/etc/vidispine/server.yaml
+      - ./vidispine-init.sh:/etc/vidispine/init.sh
+    depends_on:
+      - postgres
+    entrypoint: /etc/vidispine/init.sh
+  postgres:
+    image: postgres:latest
+    restart: on-failure
+    environment:
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    volumes:
+      - ./db-init.sql:/docker-entrypoint-initdb.d/db-init.sql
