@@ -16,5 +16,6 @@ services:
     restart: on-failure
     environment:
       - POSTGRES_HOST_AUTH_METHOD=trust
-    volumes:
-      - ./db-init.sql:/docker-entrypoint-initdb.d/db-init.sql
+      - POSTGRES_USER=vidispine
+      - POSTGRES_PASSWORD=vidispine
+      - POSTGRES_DB=vidispine
