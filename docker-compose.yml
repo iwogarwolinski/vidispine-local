@@ -1,4 +1,9 @@
 services:
+  activemq:
+    image: rmohr/activemq
+    restart: on-failure
+    environment:
+      - "TZ=Europe/London"
   vidispine:
     image: vidispine
     restart: on-failure
