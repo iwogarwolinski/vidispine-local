@@ -5,7 +5,6 @@ services:
     environment:
       - "TZ=Europe/London"
   vidispine:
-    image: vidispine
     restart: on-failure
     build:
       context: ./
