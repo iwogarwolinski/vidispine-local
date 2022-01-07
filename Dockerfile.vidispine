@@ -1,9 +1,8 @@
 FROM ubuntu:20.04
 
-RUN apt-get update && apt-get install -y -qq curl gnupg2 lsb-release systemd
+RUN apt-get update && apt-get install -y wget gpg lsb-release
 
-RUN curl http://repo.vidispine.com/apt/pub.gpg | apt-key add -
-
-RUN echo "deb [arch=amd64] http://repo.vidispine.com/apt `lsb_release -sc`/stable 21.4" | tee /etc/apt/sources.list.d/vidispine.list
-
-RUN apt-get update && apt-get install -y -qq vidispine-server vidispine-solr transcoder
+# repo.vidispine.com installation
+RUN wget -q -O - http://repo.vidispine.com/apt/pub.gpg | apt-key add -
+RUN echo "deb [arch=amd64] http://repo.vidispine.com/apt `lsb_release -sc`/stable 5.7" | tee /etc/apt/sources.list.d/vidispine.list
+RUN apt-get update && apt-get install -y vidispine-server vidispine-solr transcoder
