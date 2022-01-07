@@ -10,7 +10,9 @@ services:
       - ./vidispine-init.sh:/etc/vidispine/init.sh
     depends_on:
       - postgres
-    entrypoint: /etc/vidispine/init.sh
+    command: /etc/vidispine/init.sh
+    ports:
+      - "8080:8080"
   postgres:
     image: postgres:latest
     restart: on-failure
